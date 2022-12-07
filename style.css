@@ -1,0 +1,31 @@
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+canvas {
+  display: block;
+}
+
+p {
+  font-size: 10px ;
+  display: inline-block;
+}
+
+.button {
+ font-size: 10px;
+}
+
+.inputfelt {
+  font-size: 10px;
+  width: 30px;
+  display: inline-block;
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"] {
+    -moz-appearance: textfield;
+}
