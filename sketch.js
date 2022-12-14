@@ -65,6 +65,7 @@ function startSim(){
 
 
 function draw() {
+  drawBackground();
   if(addCircle) addCircleOnMouseClick();
 
   if (simulationActive) {
@@ -72,7 +73,6 @@ function draw() {
     updaterDOMeliments();
   } 
   updateSetings()
-  drawBackground();
   showAll();
 }
 
@@ -94,21 +94,19 @@ function simDraw() {
         continue; // skips if the two objects are the same object
       }
 
-      let collisionResult = circleCollisionChek(allObjekts[i], allObjekts[j]);
+      let collisionResult = collisionChek(allObjekts[i], allObjekts[j]);
 
       if (collisionResult.ans == true) {
 
-        let eges 
-        if(allObjekts[j] instanceof Box){ 
-          eges = findContactSide(allObjekts[j],collisionResult.axis,allObjekts[i]);
-        }
         staticCollisionResolution(allObjekts[i], allObjekts[j]); //SCR
 
         if(allObjekts[j] instanceof Circle){ // circle to circle colition
           dynamicCollisionResolutionC(allObjekts[i],allObjekts[j]);
-          allObjekts[i].move();
+          if(allObjekts[i].mass != allObjekts[j].mass){
+            allObjekts[i].move();
+          }
         } else { //circle to box colition
-          dynamicCollisionResolutionBox(allObjekts[i],allObjekts[j],eges);
+          dynamicCollisionResolutionBox(allObjekts[i],allObjekts[j],collisionResult.axis);
         }
       }
     }

@@ -5,7 +5,7 @@
  * @param {*} otherObject Circle or box
  * @returns object {ans: boolian, axis: vector}
  */
-function circleCollisionChek(circle, other){
+function collisionChek(circle, other){
     let penetrationDeapth = undefined;
     let penetrationAxis = undefined;
     
@@ -67,50 +67,6 @@ function circleCollisionChek(circle, other){
 }
 
 /**
- * @description cheks the two boxes are colliding (not in use anymore)
- * @param {*} box 
- * @param {*} box 
- * @returns object {ans: boolian, penetrationDeapth: number, axis: vector}
- */
-function boxCollisionChek(object1, object2) {
-  
-    let theObjects = [object1, object2];
-    let penetrationDeapth = undefined;
-    let penetrationAxis = undefined;
-    // For værd objekt
-    for (let i = 0; i < theObjects.length; i++){
-      for (let j = 0; j < theObjects[i].norms.length; j++){
-        theObjects[0].updateVektors()
-        theObjects[1].updateVektors()
-        let skygge1 = startAndEndOfProjection(theObjects[i].norms[j], object1)
-        let skygge2 = startAndEndOfProjection(theObjects[i].norms[j], object2)
-        // Vi skal nu se om skyggerne overlaper
-        let overlap = doesProjectionOverlab(skygge1,skygge2);
-        if(overlap.ans == false){
-          return ({ans: false})
-        }
-        if (penetrationDeapth == undefined || penetrationDeapth > overlap.deapth){
-          penetrationDeapth = overlap.deapth;
-          penetrationAxis = theObjects[i].norms[j]
-        }
-      }
-    }
-  
-  
-    //hvis koden når her ned er der sket en colition
-    let VektorBetween = p5.Vector.sub(theObjects[1].center, theObjects[0].center);
-    //makes the colition axis be the right direciton
-    if (dotProdukt(VektorBetween, penetrationAxis) < 0) {
-      penetrationAxis = createVector(-penetrationAxis.x, -penetrationAxis.y);
-    }
-    return {
-      ans: true,
-      penetrationDeapth: penetrationDeapth,
-      axis: penetrationAxis,
-    };
-}
-
-/**
  * @description projects the object onto the norm and returns the position of the start of the projection and the postion of the end of the projection 
  * @param {*} norm vector
  * @param {*} object circle or box
@@ -121,7 +77,7 @@ function startAndEndOfProjection(norm,object){
   let max;
   let min;
 
-  if(object instanceof Box) {
+  if(object instanceof Box) { //box
     for (let i = 0; i < object.points.length; i++){
       let projektionslængde = lengthOfprojektion(
         norm,
@@ -133,7 +89,7 @@ function startAndEndOfProjection(norm,object){
       if (projektionslængde < min || min == undefined)
         min = projektionslængde;
     } 
-  } else {
+  } else { //circle
     let projektionslængde = lengthOfprojektion(
       norm,
       object.pos

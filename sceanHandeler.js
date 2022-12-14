@@ -21,8 +21,8 @@ function setupSceans(){
   scean1.push(new Box(129+origonX,46+origonY,270+origonX,86+origonY,-200)); 
   scean1.push(new Box(-137+origonX,140+origonY,289+origonX,104+origonY,200));
   scean1.push(new Box(-137+origonX,140+origonY,-166+origonX,-255+origonY,-200));
-  scean1.push(new Circle(-21+origonX,48+origonY,25,-2.311,0.917,0.025));
-  scean1.push(new Circle(-65+origonX,89+origonY,25,0,0,0.025));
+  scean1.push(new Circle(-28+origonX,52+origonY,25,-2.245,0.737,0.025));
+  scean1.push(new Circle(-63+origonX,88+origonY,25,0,0,0.025));
 
   // makes scean 2
   scean2.push(new Box(0+origonX,0+origonY,160+origonX,-139+origonY,-200));
@@ -66,7 +66,7 @@ function loadScean(nr){
       case 1:
         simulationActive = false;
         worldScaleInput.value = 0.14;
-        restitutionInput.value = 0.48;
+        restitutionInput.value = 0.58;
         frictionInput.value = 0.205;
         gravetyInput.value = 0;
         volScaleInput.value = 0.25;
@@ -81,7 +81,7 @@ function loadScean(nr){
       case 2:
         simulationActive = false;
         worldScaleInput.value = 0.14;
-        restitutionInput.value = 0.48;
+        restitutionInput.value = 0.58;
         frictionInput.value = 0.205;
         gravetyInput.value = 0;
         volScaleInput.value = 0.25;
@@ -97,7 +97,7 @@ function loadScean(nr){
       case 3:
         simulationActive = false;
         worldScaleInput.value = 0.14;
-        restitutionInput.value = 0.48;
+        restitutionInput.value = 0.58;
         frictionInput.value = 0.205;
         gravetyInput.value = 0;
         volScaleInput.value = 0.25;

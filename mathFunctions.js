@@ -1,7 +1,7 @@
-const fpePresition = 0.0000001
+const fpePresition = 0.00001
 /**
  * @name Floationg Point Error Correction 
- * @description returns true if a and b is the same number within a margin of 0.0000001
+ * @description returns true if a and b is the same number within a margin of 0.00001
  * @param {*} a 
  * @param {*} b 
  * @returns boolian
