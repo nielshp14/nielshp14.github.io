@@ -41,52 +41,52 @@ function staticCollisionResolution(objec1, objec2) {
    */
 function dynamicCollisionResolutionC (circle1,circle2) {
 
-  let m1 = circle1.mass;
-  let m2 = circle2.mass;
+  let m_1 = circle1.mass;
+  let m_2 = circle2.mass;
 
 
   // Findes the volocety of the center of mass
-  let centerMassVolX = (circle1.vol.x*m1 + circle2.vol.x*m2)/(m1+m2)
-  let centerMassVolY = (circle1.vol.y*m1 + circle2.vol.y*m2)/(m1+m2)
+  let centerMassVolX = (circle1.vol.x*m_1 + circle2.vol.x*m_2)/(m_1+m_2)
+  let centerMassVolY = (circle1.vol.y*m_1 + circle2.vol.y*m_2)/(m_1+m_2)
   let centerMassVol = createVector(centerMassVolX,centerMassVolY)
 
   let reletiveVol1 = p5.Vector.sub(circle1.vol,centerMassVol);
   let reletiveVol2 = p5.Vector.sub(circle2.vol,centerMassVol);
 
   //defines variables
-  let x1s = reletiveVol1.x;  
-  let y1s = reletiveVol1.y; 
-  let x2s = reletiveVol2.x; 
-  let y2s = reletiveVol2.y; 
-
-  let p1x = circle1.pos.x;
-  let p1y = circle1.pos.y;
-  let p2x = circle2.pos.x;
-  let p2y = circle2.pos.y;
-
-  let n1x = (m1*p1x**2*x1s - 2*m1*p1x*p2x*x1s + m1*p1y**2*x1s - 2*m1*p1y*p2y*x1s + m1*p2x**2*x1s + m1*p2y**2*x1s - m2*p1x**2*x1s + 2*m2*p1x**2*x2s - 2*m2*p1x*p1y*y1s + 2*m2*p1x*p1y*y2s + 2*m2*p1x*p2x*x1s - 4*m2*p1x*p2x*x2s + 2*m2*p1x*p2y*y1s - 2*m2*p1x*p2y*y2s + m2*p1y**2*x1s + 2*m2*p1y*p2x*y1s - 2*m2*p1y*p2x*y2s - 2*m2*p1y*p2y*x1s - m2*p2x**2*x1s + 2*m2*p2x**2*x2s - 2*m2*p2x*p2y*y1s + 2*m2*p2x*p2y*y2s + m2*p2y**2*x1s)/(m1*p1x**2 - 2*m1*p1x*p2x + m1*p1y**2 - 2*m1*p1y*p2y + m1*p2x**2 + m1*p2y**2 + m2*p1x**2 - 2*m2*p1x*p2x + m2*p1y**2 - 2*m2*p1y*p2y + m2*p2x**2 + m2*p2y**2); 
-  let n1y = (m1*p1x**2*y1s - 2*m1*p1x*p2x*y1s + m1*p1y**2*y1s - 2*m1*p1y*p2y*y1s + m1*p2x**2*y1s + m1*p2y**2*y1s + m2*p1x**2*y1s - 2*m2*p1x*p1y*x1s + 2*m2*p1x*p1y*x2s - 2*m2*p1x*p2x*y1s + 2*m2*p1x*p2y*x1s - 2*m2*p1x*p2y*x2s - m2*p1y**2*y1s + 2*m2*p1y**2*y2s + 2*m2*p1y*p2x*x1s - 2*m2*p1y*p2x*x2s + 2*m2*p1y*p2y*y1s - 4*m2*p1y*p2y*y2s + m2*p2x**2*y1s - 2*m2*p2x*p2y*x1s + 2*m2*p2x*p2y*x2s - m2*p2y**2*y1s + 2*m2*p2y**2*y2s)/(m1*p1x**2 - 2*m1*p1x*p2x + m1*p1y**2 - 2*m1*p1y*p2y + m1*p2x**2 + m1*p2y**2 + m2*p1x**2 - 2*m2*p1x*p2x + m2*p1y**2 - 2*m2*p1y*p2y + m2*p2x**2 + m2*p2y**2);
-  let n2x = (2*m1*p1x**2*x1s - m1*p1x**2*x2s + 2*m1*p1x*p1y*y1s - 2*m1*p1x*p1y*y2s - 4*m1*p1x*p2x*x1s + 2*m1*p1x*p2x*x2s - 2*m1*p1x*p2y*y1s + 2*m1*p1x*p2y*y2s + m1*p1y**2*x2s - 2*m1*p1y*p2x*y1s + 2*m1*p1y*p2x*y2s - 2*m1*p1y*p2y*x2s + 2*m1*p2x**2*x1s - m1*p2x**2*x2s + 2*m1*p2x*p2y*y1s - 2*m1*p2x*p2y*y2s + m1*p2y**2*x2s + m2*p1x**2*x2s - 2*m2*p1x*p2x*x2s + m2*p1y**2*x2s - 2*m2*p1y*p2y*x2s + m2*p2x**2*x2s + m2*p2y**2*x2s)/(m1*p1x**2 - 2*m1*p1x*p2x + m1*p1y**2 - 2*m1*p1y*p2y + m1*p2x**2 + m1*p2y**2 + m2*p1x**2 - 2*m2*p1x*p2x + m2*p1y**2 - 2*m2*p1y*p2y + m2*p2x**2 + m2*p2y**2);
-  let n2y = (m1*p1x**2*y2s + 2*m1*p1x*p1y*x1s - 2*m1*p1x*p1y*x2s - 2*m1*p1x*p2x*y2s - 2*m1*p1x*p2y*x1s + 2*m1*p1x*p2y*x2s + 2*m1*p1y**2*y1s - m1*p1y**2*y2s - 2*m1*p1y*p2x*x1s + 2*m1*p1y*p2x*x2s - 4*m1*p1y*p2y*y1s + 2*m1*p1y*p2y*y2s + m1*p2x**2*y2s + 2*m1*p2x*p2y*x1s - 2*m1*p2x*p2y*x2s + 2*m1*p2y**2*y1s - m1*p2y**2*y2s + m2*p1x**2*y2s - 2*m2*p1x*p2x*y2s + m2*p1y**2*y2s - 2*m2*p1y*p2y*y2s + m2*p2x**2*y2s + m2*p2y**2*y2s)/(m1*p1x**2 - 2*m1*p1x*p2x + m1*p1y**2 - 2*m1*p1y*p2y + m1*p2x**2 + m1*p2y**2 + m2*p1x**2 - 2*m2*p1x*p2x + m2*p1y**2 - 2*m2*p1y*p2y + m2*p2x**2 + m2*p2y**2);
+  let v_1x = reletiveVol1.x;
+  let v_1y = reletiveVol1.y;
+  let v_2x = reletiveVol2.x;
+  let v_2y = reletiveVol2.y;
   
+  let p_1x = circle1.pos.x;
+  let p_1y = circle1.pos.y;
+  let p_2x = circle2.pos.x;
+  let p_2y = circle2.pos.y;
+
+  // findes new velocities 
+  let u_1x = (m_1*p_1x**2*v_1x - 2*m_1*p_1x*p_2x*v_1x + m_1*p_1y**2*v_1x - 2*m_1*p_1y*p_2y*v_1x + m_1*p_2x**2*v_1x + m_1*p_2y**2*v_1x - m_2*p_1x**2*v_1x + 2*m_2*p_1x**2*v_2x - 2*m_2*p_1x*p_1y*v_1y + 2*m_2*p_1x*p_1y*v_2y + 2*m_2*p_1x*p_2x*v_1x - 4*m_2*p_1x*p_2x*v_2x + 2*m_2*p_1x*p_2y*v_1y - 2*m_2*p_1x*p_2y*v_2y + m_2*p_1y**2*v_1x + 2*m_2*p_1y*p_2x*v_1y - 2*m_2*p_1y*p_2x*v_2y - 2*m_2*p_1y*p_2y*v_1x - m_2*p_2x**2*v_1x + 2*m_2*p_2x**2*v_2x - 2*m_2*p_2x*p_2y*v_1y + 2*m_2*p_2x*p_2y*v_2y + m_2*p_2y**2*v_1x)/(m_1*p_1x**2 - 2*m_1*p_1x*p_2x + m_1*p_1y**2 - 2*m_1*p_1y*p_2y + m_1*p_2x**2 + m_1*p_2y**2 + m_2*p_1x**2 - 2*m_2*p_1x*p_2x + m_2*p_1y**2 - 2*m_2*p_1y*p_2y + m_2*p_2x**2 + m_2*p_2y**2)
+  let u_1y = (m_1*p_1x**2*v_1y - 2*m_1*p_1x*p_2x*v_1y + m_1*p_1y**2*v_1y - 2*m_1*p_1y*p_2y*v_1y + m_1*p_2x**2*v_1y + m_1*p_2y**2*v_1y + m_2*p_1x**2*v_1y - 2*m_2*p_1x*p_1y*v_1x + 2*m_2*p_1x*p_1y*v_2x - 2*m_2*p_1x*p_2x*v_1y + 2*m_2*p_1x*p_2y*v_1x - 2*m_2*p_1x*p_2y*v_2x - m_2*p_1y**2*v_1y + 2*m_2*p_1y**2*v_2y + 2*m_2*p_1y*p_2x*v_1x - 2*m_2*p_1y*p_2x*v_2x + 2*m_2*p_1y*p_2y*v_1y - 4*m_2*p_1y*p_2y*v_2y + m_2*p_2x**2*v_1y - 2*m_2*p_2x*p_2y*v_1x + 2*m_2*p_2x*p_2y*v_2x - m_2*p_2y**2*v_1y + 2*m_2*p_2y**2*v_2y)/(m_1*p_1x**2 - 2*m_1*p_1x*p_2x + m_1*p_1y**2 - 2*m_1*p_1y*p_2y + m_1*p_2x**2 + m_1*p_2y**2 + m_2*p_1x**2 - 2*m_2*p_1x*p_2x + m_2*p_1y**2 - 2*m_2*p_1y*p_2y + m_2*p_2x**2 + m_2*p_2y**2)
+  let u_2x = (2*m_1*p_1x**2*v_1x - m_1*p_1x**2*v_2x + 2*m_1*p_1x*p_1y*v_1y - 2*m_1*p_1x*p_1y*v_2y - 4*m_1*p_1x*p_2x*v_1x + 2*m_1*p_1x*p_2x*v_2x - 2*m_1*p_1x*p_2y*v_1y + 2*m_1*p_1x*p_2y*v_2y + m_1*p_1y**2*v_2x - 2*m_1*p_1y*p_2x*v_1y + 2*m_1*p_1y*p_2x*v_2y - 2*m_1*p_1y*p_2y*v_2x + 2*m_1*p_2x**2*v_1x - m_1*p_2x**2*v_2x + 2*m_1*p_2x*p_2y*v_1y - 2*m_1*p_2x*p_2y*v_2y + m_1*p_2y**2*v_2x + m_2*p_1x**2*v_2x - 2*m_2*p_1x*p_2x*v_2x + m_2*p_1y**2*v_2x - 2*m_2*p_1y*p_2y*v_2x + m_2*p_2x**2*v_2x + m_2*p_2y**2*v_2x)/(m_1*p_1x**2 - 2*m_1*p_1x*p_2x + m_1*p_1y**2 - 2*m_1*p_1y*p_2y + m_1*p_2x**2 + m_1*p_2y**2 + m_2*p_1x**2 - 2*m_2*p_1x*p_2x + m_2*p_1y**2 - 2*m_2*p_1y*p_2y + m_2*p_2x**2 + m_2*p_2y**2)
+  let u_2y = (m_1*p_1x**2*v_2y + 2*m_1*p_1x*p_1y*v_1x - 2*m_1*p_1x*p_1y*v_2x - 2*m_1*p_1x*p_2x*v_2y - 2*m_1*p_1x*p_2y*v_1x + 2*m_1*p_1x*p_2y*v_2x + 2*m_1*p_1y**2*v_1y - m_1*p_1y**2*v_2y - 2*m_1*p_1y*p_2x*v_1x + 2*m_1*p_1y*p_2x*v_2x - 4*m_1*p_1y*p_2y*v_1y + 2*m_1*p_1y*p_2y*v_2y + m_1*p_2x**2*v_2y + 2*m_1*p_2x*p_2y*v_1x - 2*m_1*p_2x*p_2y*v_2x + 2*m_1*p_2y**2*v_1y - m_1*p_2y**2*v_2y + m_2*p_1x**2*v_2y - 2*m_2*p_1x*p_2x*v_2y + m_2*p_1y**2*v_2y - 2*m_2*p_1y*p_2y*v_2y + m_2*p_2x**2*v_2y + m_2*p_2y**2*v_2y)/(m_1*p_1x**2 - 2*m_1*p_1x*p_2x + m_1*p_1y**2 - 2*m_1*p_1y*p_2y + m_1*p_2x**2 + m_1*p_2y**2 + m_2*p_1x**2 - 2*m_2*p_1x*p_2x + m_2*p_1y**2 - 2*m_2*p_1y*p_2y + m_2*p_2x**2 + m_2*p_2y**2) 
 
   //changes velosety bassed on coefficientOfRestitution
-  let n1xr = coefficientOfRestitution*n1x;
-  let n1yr = coefficientOfRestitution*n1y;
-  let n2xr = coefficientOfRestitution*n2x;
-  let n2yr = coefficientOfRestitution*n2y;
+  u_1x = coefficientOfRestitution*u_1x;
+  u_1y = coefficientOfRestitution*u_1y;
+  u_2x = coefficientOfRestitution*u_2x;
+  u_2y = coefficientOfRestitution*u_2y;
 
   //adds back the center mass to the object 
-  n1xr += centerMassVol.x;
-  n1yr += centerMassVol.y;
-  n2xr += centerMassVol.x;
-  n2yr += centerMassVol.y;
+  u_1x += centerMassVol.x;
+  u_1y += centerMassVol.y;
+  u_2x += centerMassVol.x;
+  u_2y += centerMassVol.y;
   
   //updates the cirles vecocity to what we have calculatet
-  circle1.vol.x = n1xr;
-  circle1.vol.y = n1yr;
-  circle2.vol.x = n2xr;
-  circle2.vol.y = n2yr;
+  circle1.vol.x = u_1x;
+  circle1.vol.y = u_1y;
+  circle2.vol.x = u_2x;
+  circle2.vol.y = u_2y;
 
   // on the ofchanse that a vol is NaN then change it 
   if(circle1.vol.x != circle1.vol.x || circle1.vol.y != circle1.vol.y ){ // makes so that vol is not (NaN, NaN, 0)
